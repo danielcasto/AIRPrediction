@@ -44,6 +44,7 @@
     "import pmdarima as pm\n",
     "from pmdarima.arima.stationarity import ADFTest\n",
     "from pmdarima.arima.utils import ndiffs\n",
+<<<<<<< HEAD
     "from pmdarima.arima.utils import nsdiffs\n",
     "\n",
     "# holt winters \n",
@@ -51,6 +52,10 @@
     "from statsmodels.tsa.holtwinters import SimpleExpSmoothing   \n",
     "# double and triple exponential smoothing\n",
     "from statsmodels.tsa.holtwinters import ExponentialSmoothing"
+=======
+    "\n",
+    "from pmdarima.arima.utils import nsdiffs"
+>>>>>>> 757d6ad85bd185c86714c66ba336a25e48f474ef
    ]
   },
   {
@@ -1979,6 +1984,7 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
+<<<<<<< HEAD
       " ARIMA(1,0,1)(1,0,1)[12] intercept   : AIC=48899.236, Time=12.53 sec\n",
       " ARIMA(0,0,0)(0,0,0)[12] intercept   : AIC=53343.561, Time=0.13 sec\n",
       " ARIMA(1,0,0)(1,0,0)[12] intercept   : AIC=48970.297, Time=3.95 sec\n",
@@ -1986,6 +1992,15 @@
       " ARIMA(0,0,0)(0,0,0)[12]             : AIC=60837.365, Time=0.06 sec\n",
       " ARIMA(1,0,1)(0,0,1)[12] intercept   : AIC=48916.015, Time=3.98 sec\n",
       " ARIMA(1,0,1)(1,0,0)[12] intercept   : AIC=48915.664, Time=4.07 sec\n"
+=======
+      " ARIMA(1,0,1)(1,0,1)[12] intercept   : AIC=48899.236, Time=12.88 sec\n",
+      " ARIMA(0,0,0)(0,0,0)[12] intercept   : AIC=53343.561, Time=0.10 sec\n",
+      " ARIMA(1,0,0)(1,0,0)[12] intercept   : AIC=48970.297, Time=3.42 sec\n",
+      " ARIMA(0,0,1)(0,0,1)[12] intercept   : AIC=50217.559, Time=3.36 sec\n",
+      " ARIMA(0,0,0)(0,0,0)[12]             : AIC=60837.365, Time=0.06 sec\n",
+      " ARIMA(1,0,1)(0,0,1)[12] intercept   : AIC=48916.015, Time=4.74 sec\n",
+      " ARIMA(1,0,1)(1,0,0)[12] intercept   : AIC=48915.664, Time=4.63 sec\n"
+>>>>>>> 757d6ad85bd185c86714c66ba336a25e48f474ef
      ]
     },
     {
@@ -2000,8 +2015,13 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
+<<<<<<< HEAD
       " ARIMA(1,0,1)(2,0,1)[12] intercept   : AIC=48893.362, Time=23.33 sec\n",
       " ARIMA(1,0,1)(2,0,0)[12] intercept   : AIC=48903.517, Time=14.31 sec\n"
+=======
+      " ARIMA(1,0,1)(2,0,1)[12] intercept   : AIC=48893.362, Time=27.43 sec\n",
+      " ARIMA(1,0,1)(2,0,0)[12] intercept   : AIC=48903.517, Time=17.05 sec\n"
+>>>>>>> 757d6ad85bd185c86714c66ba336a25e48f474ef
      ]
     },
     {
@@ -2016,7 +2036,11 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
+<<<<<<< HEAD
       " ARIMA(1,0,1)(2,0,2)[12] intercept   : AIC=48900.467, Time=26.97 sec\n"
+=======
+      " ARIMA(1,0,1)(2,0,2)[12] intercept   : AIC=48900.467, Time=31.15 sec\n"
+>>>>>>> 757d6ad85bd185c86714c66ba336a25e48f474ef
      ]
     },
     {
@@ -2031,8 +2055,13 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
+<<<<<<< HEAD
       " ARIMA(1,0,1)(1,0,2)[12] intercept   : AIC=48893.022, Time=27.71 sec\n",
       " ARIMA(1,0,1)(0,0,2)[12] intercept   : AIC=48905.862, Time=10.47 sec\n"
+=======
+      " ARIMA(1,0,1)(1,0,2)[12] intercept   : AIC=48893.022, Time=28.35 sec\n",
+      " ARIMA(1,0,1)(0,0,2)[12] intercept   : AIC=48905.862, Time=11.07 sec\n"
+>>>>>>> 757d6ad85bd185c86714c66ba336a25e48f474ef
      ]
     },
     {
@@ -2047,8 +2076,13 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
+<<<<<<< HEAD
       " ARIMA(0,0,1)(1,0,2)[12] intercept   : AIC=49718.886, Time=23.74 sec\n",
       " ARIMA(1,0,0)(1,0,2)[12] intercept   : AIC=48925.244, Time=19.73 sec\n"
+=======
+      " ARIMA(0,0,1)(1,0,2)[12] intercept   : AIC=49718.886, Time=26.93 sec\n",
+      " ARIMA(1,0,0)(1,0,2)[12] intercept   : AIC=48925.244, Time=22.79 sec\n"
+>>>>>>> 757d6ad85bd185c86714c66ba336a25e48f474ef
      ]
     },
     {
@@ -2063,7 +2097,11 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
+<<<<<<< HEAD
       " ARIMA(2,0,1)(1,0,2)[12] intercept   : AIC=48907.622, Time=28.42 sec\n"
+=======
+      " ARIMA(2,0,1)(1,0,2)[12] intercept   : AIC=48907.622, Time=34.35 sec\n"
+>>>>>>> 757d6ad85bd185c86714c66ba336a25e48f474ef
      ]
     },
     {
@@ -2078,7 +2116,11 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
+<<<<<<< HEAD
       " ARIMA(1,0,2)(1,0,2)[12] intercept   : AIC=inf, Time=30.29 sec\n"
+=======
+      " ARIMA(1,0,2)(1,0,2)[12] intercept   : AIC=inf, Time=36.98 sec\n"
+>>>>>>> 757d6ad85bd185c86714c66ba336a25e48f474ef
      ]
     },
     {
@@ -2093,7 +2135,11 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
+<<<<<<< HEAD
       " ARIMA(0,0,0)(1,0,2)[12] intercept   : AIC=51534.960, Time=27.23 sec\n"
+=======
+      " ARIMA(0,0,0)(1,0,2)[12] intercept   : AIC=51534.960, Time=30.69 sec\n"
+>>>>>>> 757d6ad85bd185c86714c66ba336a25e48f474ef
      ]
     },
     {
@@ -2108,7 +2154,11 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
+<<<<<<< HEAD
       " ARIMA(0,0,2)(1,0,2)[12] intercept   : AIC=49315.101, Time=33.86 sec\n"
+=======
+      " ARIMA(0,0,2)(1,0,2)[12] intercept   : AIC=49315.101, Time=36.79 sec\n"
+>>>>>>> 757d6ad85bd185c86714c66ba336a25e48f474ef
      ]
     },
     {
@@ -2123,7 +2173,11 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
+<<<<<<< HEAD
       " ARIMA(2,0,0)(1,0,2)[12] intercept   : AIC=48903.002, Time=27.62 sec\n"
+=======
+      " ARIMA(2,0,0)(1,0,2)[12] intercept   : AIC=48903.002, Time=30.24 sec\n"
+>>>>>>> 757d6ad85bd185c86714c66ba336a25e48f474ef
      ]
     },
     {
@@ -2138,11 +2192,19 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
+<<<<<<< HEAD
       " ARIMA(2,0,2)(1,0,2)[12] intercept   : AIC=inf, Time=33.60 sec\n",
       " ARIMA(1,0,1)(1,0,2)[12]             : AIC=inf, Time=21.08 sec\n",
       "\n",
       "Best model:  ARIMA(1,0,1)(1,0,2)[12] intercept\n",
       "Total fit time: 376.889 seconds\n"
+=======
+      " ARIMA(2,0,2)(1,0,2)[12] intercept   : AIC=inf, Time=40.58 sec\n",
+      " ARIMA(1,0,1)(1,0,2)[12]             : AIC=inf, Time=23.30 sec\n",
+      "\n",
+      "Best model:  ARIMA(1,0,1)(1,0,2)[12] intercept\n",
+      "Total fit time: 426.970 seconds\n"
+>>>>>>> 757d6ad85bd185c86714c66ba336a25e48f474ef
      ]
     }
    ],
@@ -2166,6 +2228,7 @@
    ]
   },
   {
+<<<<<<< HEAD
    "cell_type": "markdown",
    "id": "fa0ee76e",
    "metadata": {},
@@ -2546,6 +2609,11 @@
    "cell_type": "code",
    "execution_count": null,
    "id": "c680a40b",
+=======
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "13493615",
+>>>>>>> 757d6ad85bd185c86714c66ba336a25e48f474ef
    "metadata": {},
    "outputs": [],
    "source": []
