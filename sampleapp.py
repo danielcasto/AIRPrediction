@@ -24,7 +24,7 @@ def main():
     begin_date_label = QLabel('Enter Beginning Date (MM/DD/YYYY): ')
     begin_date_edit = QLineEdit()
 
-    end_date_label = QLabel('Enter End Date (MM/DD/YYYY): ')
+    end_date_label = QLabel('Enter Ending Date m (MM/DD/YYYY): ')
     end_date_edit = QLineEdit()
 
     grid.addWidget(pollutant_label, 0, 0)
