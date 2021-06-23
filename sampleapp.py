@@ -24,8 +24,10 @@ def main():
     begin_date_label = QLabel('Enter Beginning Date (MM/DD/YYYY): ')
     begin_date_edit = QLineEdit()
 
-    end_date_label = QLabel('Enter Ending Date mt (MM/DD/YYYY): ')
+    end_date_label = QLabel('Enter Ending Date (MM/DD/YYYY): ')
     end_date_edit = QLineEdit()
+
+    button_one = QPushButton("Get Results")
 
     grid.addWidget(pollutant_label, 0, 0)
     grid.addWidget(pollutant_edit, 0, 1)
@@ -38,6 +40,19 @@ def main():
 
     grid.addWidget(end_date_label, 3, 0)
     grid.addWidget(end_date_edit, 3, 1)
+
+    def submission():
+        pl = pollutant_edit.text()
+        st = state_edit.text()
+        bd = begin_date_edit.text()
+        ed = end_date_edit.text()
+        print(pl)
+        print(st)
+        print(bd)
+        print(ed)
+
+    button_one.clicked.connect(submission)
+    grid.addWidget(button_one, 4, 1)
 
     window.show()
     sys.exit(app.exec_())
