@@ -41,7 +41,7 @@ class MainWindow(QWidget):
         self.grid.addWidget(self.end_date_label, 3, 0)
         self.grid.addWidget(self.end_date_edit, 3, 1)
 
-        self.button_one.clicked.connect(self.submit_input)
+        self.button_one.clicked.connect(self.__submit_input)
         self.grid.addWidget(self.button_one, 4, 1)
 
         self.show()
@@ -74,7 +74,7 @@ class MainWindow(QWidget):
             return False, None
 
 
-    def submit_input(self):
+    def __submit_input(self):
         pollutants = [''] # TODO add types of pollutants
         states = [''] # TODO add all state abbreviations
 
