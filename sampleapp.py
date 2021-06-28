@@ -5,6 +5,7 @@ from PySide2.QtWidgets import *
 import sys
 import datetime
 import matplotlib.pyplot as plt
+from Time_Series_Models.prophet_model import prediction
 
 
 class MainWindow(QWidget):
@@ -114,6 +115,12 @@ class MainWindow(QWidget):
                 self.error_text.setText('Error: Date format(s) is/are incorrect')
                 print('Error: Date format(s) is/are incorrect')
                 return
+        
+        try:
+            prediction(pl, city)
+        except:
+            self.error_text.setText('Error: something went wrong in prediction')
+            print('Error: something went wrong in prediction')
     
 
 
