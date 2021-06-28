@@ -4,6 +4,7 @@ from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 import sys
 import datetime
+import matplotlib.pyplot as plt
 
 
 class MainWindow(QWidget):
@@ -75,11 +76,22 @@ class MainWindow(QWidget):
 
 
     def __submit_input(self):
-        pollutants = [''] # TODO add types of pollutants
-        states = [''] # TODO add all state abbreviations
+        pollutants = ['NO2', 'O3', 'SO2', 'CO']
+        states = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 
+        'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 
+        'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']
 
         pl = self.pollutant_edit.text()
+
+        if pl not in pollutants:
+            print('Error: pollutant must be NO2, O3, SO2, or CO')
+            return
+
         st = self.state_edit.text()
+
+        if st not in states:
+            print('Error: state must be one of the 50 states in the US and must be two letter abbreviation for that state')
+            return
 
         bd = self.begin_date_edit.text()
         bd_valid, bd_datetime = self.__validate_date(bd)
@@ -113,4 +125,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
