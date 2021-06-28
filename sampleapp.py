@@ -28,6 +28,8 @@ class MainWindow(QWidget):
         self.end_date_label = QLabel('Enter Ending Date (MM/DD/YYYY): ')
         self.end_date_edit = QLineEdit()
 
+        self.error_text = QLabel()
+
         self.button_one = QPushButton("Get Results")
 
         self.grid.addWidget(self.pollutant_label, 0, 0)
@@ -42,8 +44,11 @@ class MainWindow(QWidget):
         self.grid.addWidget(self.end_date_label, 3, 0)
         self.grid.addWidget(self.end_date_edit, 3, 1)
 
+        self.error_text.setMaximumSize(1000, 50)
+        self.grid.addWidget(self.error_text, 4, 1)
+
         self.button_one.clicked.connect(self.__submit_input)
-        self.grid.addWidget(self.button_one, 4, 1)
+        self.grid.addWidget(self.button_one, 5, 1)
 
         self.show()
 
@@ -76,6 +81,8 @@ class MainWindow(QWidget):
 
 
     def __submit_input(self):
+        self.error_text.setText('')
+
         pollutants = ['NO2', 'O3', 'SO2', 'CO']
         states = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 
         'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 
@@ -84,13 +91,15 @@ class MainWindow(QWidget):
         pl = self.pollutant_edit.text()
 
         if pl not in pollutants:
+            self.error_text.setText('Error: pollutant must be NO2, O3, SO2, or CO')
             print('Error: pollutant must be NO2, O3, SO2, or CO')
             return
 
         st = self.state_edit.text()
 
         if st not in states:
-            print('Error: state must be one of the 50 states in the US and must be two letter abbreviation for that state')
+            self.error_text.setText('Error: state must two letter abbreviation of one of the 50 states in the US')
+            print('Error: state must two letter abbreviation of one of the 50 states in the US')
             return
 
         bd = self.begin_date_edit.text()
@@ -101,13 +110,15 @@ class MainWindow(QWidget):
 
         if bd_valid and ed_valid:
             if bd_datetime > ed_datetime:
-                # TODO do something to let user know ed can't be before bd
+                self.error_text.setText('Error: ending date is before beginning date')
                 print('Error: ending date is before beginning date')
                 return
             else:
                 print('Date formats are correct')
         else:
-            print('date format(s) is/are incorrect')
+            self.error_text.setText('Error: Date format(s) is/are incorrect')
+            print('Error: Date format(s) is/are incorrect')
+            return
 
 
         print(pl)
