@@ -19,14 +19,14 @@ class MainWindow(QWidget):
         self.pollutant_label = QLabel('Enter Pollutant (NO2, O3, SO2, or CO):')
         self.pollutant_edit = QLineEdit()
 
-        self.state_label = QLabel('Enter State (Two Letter Abbreviation):')
-        self.state_edit = QLineEdit()
+        self.city_label = QLabel('Enter City: ')
+        self.city_edit = QLineEdit()
 
         self.begin_date_label = QLabel('Enter Beginning Date (MM/DD/YYYY): ')
-        self.begin_date_edit = QLineEdit()
+        self.begin_date_edit = QLineEdit('This feature is not available yet (any input here will be ignored)')
 
         self.end_date_label = QLabel('Enter Ending Date (MM/DD/YYYY): ')
-        self.end_date_edit = QLineEdit()
+        self.end_date_edit = QLineEdit('This feature is not available yet (any input here will be ignored)')
 
         self.error_text = QLabel()
 
@@ -35,8 +35,8 @@ class MainWindow(QWidget):
         self.grid.addWidget(self.pollutant_label, 0, 0)
         self.grid.addWidget(self.pollutant_edit, 0, 1)
 
-        self.grid.addWidget(self.state_label, 1, 0)
-        self.grid.addWidget(self.state_edit, 1, 1)
+        self.grid.addWidget(self.city_label, 1, 0)
+        self.grid.addWidget(self.city_edit, 1, 1)
 
         self.grid.addWidget(self.begin_date_label, 2, 0)
         self.grid.addWidget(self.begin_date_edit, 2, 1)
@@ -84,9 +84,6 @@ class MainWindow(QWidget):
         self.error_text.setText('')
 
         pollutants = ['NO2', 'O3', 'SO2', 'CO']
-        states = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 
-        'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 
-        'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']
 
         pl = self.pollutant_edit.text()
 
@@ -95,36 +92,28 @@ class MainWindow(QWidget):
             print('Error: pollutant must be NO2, O3, SO2, or CO')
             return
 
-        st = self.state_edit.text()
+        city = self.city_edit.text()
 
-        if st not in states:
-            self.error_text.setText('Error: state must two letter abbreviation of one of the 50 states in the US')
-            print('Error: state must two letter abbreviation of one of the 50 states in the US')
-            return
+        date_feature_available = False
 
-        bd = self.begin_date_edit.text()
-        bd_valid, bd_datetime = self.__validate_date(bd)
+        if date_feature_available:
+            bd = self.begin_date_edit.text()
+            bd_valid, bd_datetime = self.__validate_date(bd)
 
-        ed = self.end_date_edit.text()
-        ed_valid, ed_datetime = self.__validate_date(ed)
+            ed = self.end_date_edit.text()
+            ed_valid, ed_datetime = self.__validate_date(ed)
 
-        if bd_valid and ed_valid:
-            if bd_datetime > ed_datetime:
-                self.error_text.setText('Error: ending date is before beginning date')
-                print('Error: ending date is before beginning date')
-                return
+            if bd_valid and ed_valid:
+                if bd_datetime > ed_datetime:
+                    self.error_text.setText('Error: ending date is before beginning date')
+                    print('Error: ending date is before beginning date')
+                    return
+                else:
+                    print('Date formats are correct')
             else:
-                print('Date formats are correct')
-        else:
-            self.error_text.setText('Error: Date format(s) is/are incorrect')
-            print('Error: Date format(s) is/are incorrect')
-            return
-
-
-        print(pl)
-        print(st)
-        print(bd)
-        print(ed)
+                self.error_text.setText('Error: Date format(s) is/are incorrect')
+                print('Error: Date format(s) is/are incorrect')
+                return
     
 
 
