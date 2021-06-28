@@ -16,10 +16,10 @@ class MainWindow(QWidget):
         self.grid = QGridLayout()
         self.setLayout(self.grid)
 
-        self.pollutant_label = QLabel('Enter Pollutant')
+        self.pollutant_label = QLabel('Enter Pollutant (NO2, O3, SO2, or CO):')
         self.pollutant_edit = QLineEdit()
 
-        self.state_label = QLabel('Enter State')
+        self.state_label = QLabel('Enter State (Two Letter Abbreviation):')
         self.state_edit = QLineEdit()
 
         self.begin_date_label = QLabel('Enter Beginning Date (MM/DD/YYYY): ')
