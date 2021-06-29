@@ -4,7 +4,6 @@ from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 import sys
 import datetime
-import matplotlib.pyplot as plt
 from Time_Series_Models.prophet_model import prediction
 
 
@@ -24,13 +23,10 @@ class MainWindow(QWidget):
         self.city_label = QLabel('Enter City: ')
         self.city_edit = QLineEdit()
 
-        self.begin_date_label = QLabel('Enter Beginning Date (MM/DD/YYYY): ')
-        self.begin_date_edit = QLineEdit('This feature is not available yet (any input here will be ignored)')
-
-        self.end_date_label = QLabel('Enter Ending Date (MM/DD/YYYY): ')
+        self.end_date_label = QLabel('Enter Future Date (MM/DD/YYYY): ')
         self.end_date_edit = QLineEdit('This feature is not available yet (any input here will be ignored)')
 
-        self.error_text = QLabel()
+        self.msg_text = QLabel()
 
         self.button_one = QPushButton("Get Results")
 
@@ -40,14 +36,11 @@ class MainWindow(QWidget):
         self.grid.addWidget(self.city_label, 1, 0)
         self.grid.addWidget(self.city_edit, 1, 1)
 
-        self.grid.addWidget(self.begin_date_label, 2, 0)
-        self.grid.addWidget(self.begin_date_edit, 2, 1)
-
         self.grid.addWidget(self.end_date_label, 3, 0)
         self.grid.addWidget(self.end_date_edit, 3, 1)
 
-        self.error_text.setMaximumSize(1000, 50)
-        self.grid.addWidget(self.error_text, 4, 1)
+        self.msg_text.setMaximumSize(1000, 50)
+        self.grid.addWidget(self.msg_text, 4, 1)
 
         self.button_one.clicked.connect(self.__submit_input)
         self.grid.addWidget(self.button_one, 5, 1)
@@ -83,14 +76,14 @@ class MainWindow(QWidget):
 
 
     def __submit_input(self):
-        self.error_text.setText('')
+        self.msg_text.setText('')
 
         pollutants = ['NO2', 'O3', 'SO2', 'CO']
 
         pl = self.pollutant_edit.text()
 
         if pl not in pollutants:
-            self.error_text.setText('Error: pollutant must be NO2, O3, SO2, or CO')
+            self.msg_text.setText('Error: pollutant must be NO2, O3, SO2, or CO')
             print('Error: pollutant must be NO2, O3, SO2, or CO')
             return
 
@@ -99,28 +92,28 @@ class MainWindow(QWidget):
         date_feature_available = False
 
         if date_feature_available:
-            bd = self.begin_date_edit.text()
-            bd_valid, bd_datetime = self.__validate_date(bd)
 
             ed = self.end_date_edit.text()
             ed_valid, ed_datetime = self.__validate_date(ed)
 
             if bd_valid and ed_valid:
                 if bd_datetime > ed_datetime:
-                    self.error_text.setText('Error: ending date is before beginning date')
+                    self.msg_text.setText('Error: ending date is before beginning date')
                     print('Error: ending date is before beginning date')
                     return
                 else:
                     print('Date formats are correct')
             else:
-                self.error_text.setText('Error: Date format(s) is/are incorrect')
+                self.msg_text.setText('Error: Date format(s) is/are incorrect')
                 print('Error: Date format(s) is/are incorrect')
                 return
         
         try:
-            prediction(pl, city)
+            self.msg_text.setText('loading ...')
+            yhat_val = prediction(pl, city)
+            self.msg_text.setText(f'The forecast for {city} is {yhat_val}')
         except:
-            self.error_text.setText('Error: something went wrong in prediction')
+            self.msg_text.setText('Error: something went wrong in prediction')
             print('Error: something went wrong in prediction')
 
 
