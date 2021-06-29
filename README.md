@@ -18,7 +18,7 @@ pip install AIRPrediction
 4. Copy and paste the URL in your browser
 5. (For Prototype purpose) Enter exactly Pollutants: CO States: Washington Select Data: 2021, 07, 27 
 6. The model will start training in your command prompt
-7. After wait about five minutes
+7. After waiting about five minutes
 8. Predicted value will appear on the webpage
 
 ## Repository Link
