@@ -9,7 +9,7 @@ pollution_us_2000_2016.csv(382.37 MB)
 pip install AIRPrediction
 
 ## Executable Command
-TODO
+1. Install all the requirements by doing "pip3 install -r requirements.txt"
 
 ## Command to Run Sample App
 TODO
