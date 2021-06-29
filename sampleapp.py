@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from Time_Series_Models.prophet_model import prediction
 
 
+
 class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
@@ -121,7 +122,7 @@ class MainWindow(QWidget):
         except:
             self.error_text.setText('Error: something went wrong in prediction')
             print('Error: something went wrong in prediction')
-    
+
 
 
 def main():
