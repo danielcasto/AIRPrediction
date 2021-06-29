@@ -26,4 +26,4 @@ https://github.com/Data-for-Good-by-UF/AIR
 
 ## Sample Application (Demo.ver Not connected to API)
 The following files belong to the Sample Application:
-  sampleapp.py
+  sampleapp.py  (Demo)

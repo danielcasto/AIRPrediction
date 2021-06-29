@@ -3,8 +3,10 @@ from prophet import Prophet
 
 
 def prediction(pollutant, city):
+    pollutant_choice = pollutant + " AQI"
+
     # read the csv file into a dataframe
-    df = pd.read_csv('../data/pollution_us_2000_2016.csv')
+    df = pd.read_csv('pollution_us_2000_2016.csv')
 
     # delete unnecessary data columns
     df = df.drop(columns=['Unnamed: 0', 'NO2 Units', 'O3 Units', 'SO2 Units', 'CO Units'])
@@ -23,7 +25,7 @@ def prediction(pollutant, city):
     mean_aqi = mean_aqi.reset_index()
 
     # create subset of dataset to include only city and column selected for analysis
-    new_df = mean_aqi.loc[mean_aqi['City'] == city, ['date', pollutant]]
+    new_df = mean_aqi.loc[mean_aqi['City'] == city, ['date', pollutant_choice]]
 
     new_df = new_df.rename(columns={"date": "ds",
                                     "O3 AQI": "y"})
@@ -39,11 +41,13 @@ def prediction(pollutant, city):
 
     forecast = prophet_model.predict(future)
 
-    output = prophet_model.plot(forecast)
+    # output = prophet_model.plot(forecast)
+    # output.show()
 
-    output.show()
+    print(forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail(1))
 
-if __name__ == "__main__":
-    pollutant_choice = "O3" + " AQI"
-    city_choice = "Washington"
-    prediction(pollutant_choice, city_choice)
+
+#if __name__ == "__main__":
+    #pollutant_choice = "O3"
+    #city_choice = "Washington"
+   # prediction(pollutant_choice, city_choice)
