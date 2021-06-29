@@ -14,7 +14,12 @@ pip install AIRPrediction
 ## Command to Run Sample App
 1. Install all the requirements by doing "pip3 install -r requirements.txt"
 2. Run the flask app by "python3 forecast-flask-app.py"
-3. 
+3. The URL will appear: http://127.0.0.1:5000/
+4. Copy and paste the URL in your browser
+5. (For Prototype purpose) Enter exactly Pollutants: CO States: Washington Select Date: 2021, 07, 27 
+6. The model will start training in your command prompt
+7. After waiting about five minutes
+8. Predicted value will appear on the webpage
 
 ## Repository Link
 https://github.com/Data-for-Good-by-UF/AIR

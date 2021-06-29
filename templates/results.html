@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results Page</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/results.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+<div id="weatherResults">
+    <h3 style="color: #87CEEB">Predicted AQI for</h3>
+    <h2 style="color: #87CEEB">{{ data.state }}, {{ data.code }} on {{ data.date }}</h2>
+    <h3 style="color: #87CEEB">Prediction: <u>{{ data.predict }}</u></h3>
+    
+    
+
+</div>
+</body>
+</html>
