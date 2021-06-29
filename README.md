@@ -11,7 +11,7 @@ pip install AIRPrediction
 
 ## Executable Command
 
-## Command to Run Sample App
+## Command to Run Sample API
 1. Install all the requirements by doing "pip3 install -r requirements.txt"
 2. Run the flask app by "python3 forecast-flask-app.py"
 3. The URL will appear: http://127.0.0.1:5000/
