@@ -24,6 +24,6 @@ pip install AIRPrediction
 ## Repository Link
 https://github.com/Data-for-Good-by-UF/AIR
 
-## Sample Application (Demo)
+## Sample Application (Demo.ver Not connected to API)
 The following files belong to the Sample Application:
   sampleapp.py
