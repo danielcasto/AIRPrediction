@@ -16,7 +16,7 @@ pip install AIRPrediction
 2. Run the flask app by "python3 forecast-flask-app.py"
 3. The URL will appear: http://127.0.0.1:5000/
 4. Copy and paste the URL in your browser
-5. (For Prototype purpose) Enter exactly Pollutants: CO States: Washington Select Data: 2021, 07, 27 
+5. (For Prototype purpose) Enter exactly Pollutants: CO States: Washington Select Date: 2021, 07, 27 
 6. The model will start training in your command prompt
 7. After waiting about five minutes
 8. Predicted value will appear on the webpage
