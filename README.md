@@ -3,7 +3,7 @@
 
 ## Dataset to Train the Time Series Model AIR.Prototype_ver.1
 Since GitHub has a strict file limit of 100MB, we cannot upload the dataset to GitHub.
-You need to include this csv file in the working directory: 
+You need to include this csv file manually in the working directory: 
 https://www.kaggle.com/sogun3/uspollution
 pollution_us_2000_2016.csv(382.37 MB)
 
