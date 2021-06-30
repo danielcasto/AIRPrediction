@@ -9,17 +9,8 @@ pollution_us_2000_2016.csv(382.37 MB)
 ## Package Name for PIP Installation
 pip install AIRPrediction
 
-## Executable Command
-
-## Command to Run Sample API
-1. Install all the requirements by doing "pip3 install -r requirements.txt"
-2. Run the flask app by "python3 forecast-flask-app.py"
-3. The URL will appear: http://127.0.0.1:5000/
-4. Copy and paste the URL in your browser
-5. (For Prototype purpose) Enter exactly Pollutants: CO States: Washington Select Date: 2021, 07, 27 
-6. The model will start training in your command prompt
-7. After waiting about five minutes
-8. Predicted value will appear on the webpage
+## Command to Run Sample App
+python3 sampleapp.py
 
 ## Repository Link
 https://github.com/Data-for-Good-by-UF/AIR
