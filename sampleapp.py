@@ -24,7 +24,7 @@ class MainWindow(QWidget):
         self.city_edit = QLineEdit()
 
         self.end_date_label = QLabel('Enter Future Date (MM/DD/YYYY): ')
-        self.end_date_edit = QLineEdit('This feature is not available yet (any input here will be ignored)')
+        self.end_date_edit = QLineEdit()
 
         self.msg_text = QLabel()
 
@@ -89,28 +89,35 @@ class MainWindow(QWidget):
 
         city = self.city_edit.text()
 
-        date_feature_available = False
+        date_feature_available = True
 
         if date_feature_available:
 
             ed = self.end_date_edit.text()
             ed_valid, ed_datetime = self.__validate_date(ed)
 
-            if bd_valid and ed_valid:
-                if bd_datetime > ed_datetime:
-                    self.msg_text.setText('Error: ending date is before beginning date')
-                    print('Error: ending date is before beginning date')
-                    return
-                else:
-                    print('Date formats are correct')
+            if ed_valid:
+                print('Date format are correct')
             else:
-                self.msg_text.setText('Error: Date format(s) is/are incorrect')
-                print('Error: Date format(s) is/are incorrect')
+                self.msg_text.setText('Error: Date format is incorrect')
+                print('Error: Date format is incorrect')
                 return
+        
+        month_string = str(ed_datetime.month)
+        day_string = str(ed_datetime.day)
+
+        if len(month_string) == 1:
+            month_string = '0' + month_string
+
+        if len(day_string) == 1:
+            day_string = '0' + day_string
+
+        date_string = str(ed_datetime.year) + '-' + month_string + '-' + day_string
+        print(date_string)
         
         try:
             self.msg_text.setText('loading ...')
-            yhat_val = prediction(pl, city)
+            yhat_val = prediction(pl, city, date_string)
             self.msg_text.setText(f'The forecast for {city} is {yhat_val}')
         except:
             self.msg_text.setText('Error: something went wrong in prediction')
