@@ -118,11 +118,10 @@ class MainWindow(QWidget):
         try:
             self.msg_text.setText('loading ...')
             yhat_val = prediction(pl, city, date_string)
-            self.msg_text.setText(f'The forecast for {city} is {yhat_val}')
+            self.msg_text.setText(f'The forecast for {pl} in {city} is {yhat_val}')
         except:
             self.msg_text.setText('Error: something went wrong in prediction')
             print('Error: something went wrong in prediction')
-
 
 
 def main():

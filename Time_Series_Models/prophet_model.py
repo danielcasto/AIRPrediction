@@ -2,7 +2,7 @@ import pandas as pd
 from prophet import Prophet
 
 
-def prediction(pollutant, city):
+def prediction(pollutant, city, date):
     pollutant_choice = pollutant + " AQI"
 
     # read the csv file into a dataframe
@@ -28,7 +28,7 @@ def prediction(pollutant, city):
     new_df = mean_aqi.loc[mean_aqi['City'] == city, ['date', pollutant_choice]]
 
     new_df = new_df.rename(columns={"date": "ds",
-                                    "O3 AQI": "y"})
+                                    pollutant_choice: "y"})
 
     # use ffill (forward fill) to handle missing value filling the missing value from the previous day
     new_df = new_df.ffill()
@@ -37,14 +37,22 @@ def prediction(pollutant, city):
     prophet_model.fit(new_df)
 
     # the parameter 'periods' represents the number of days you want to predict after 2016-04-30
-    future = prophet_model.make_future_dataframe(periods=2000)
+    future = prophet_model.make_future_dataframe(periods=2500)
 
     forecast = prophet_model.predict(future)
 
     # output = prophet_model.plot(forecast)
     # output.show()
 
-    print(forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail(1))
+    temp = forecast[forecast['ds'] == date]
+    output = list(x for x in temp["yhat"])
+
+    print(output[0])
+
+    return output[0]
+
+
+
 
 
 #if __name__ == "__main__":
