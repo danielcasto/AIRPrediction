@@ -10,7 +10,7 @@ pollution_us_2000_2016.csv(382.37 MB)
 ## Package Name for PIP Installation
 pip install AIRPrediction
 
-## Command to Run Sample App\
+## Command to Run Sample App
 (Once inside folder of installed framework)
 python3 sampleapp.py 
 
