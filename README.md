@@ -20,7 +20,7 @@ pip install AIRPrediction
 7. In command prompt, it will start importing modules using full dataset in a production environment (a development server), the model will be imported into flask app that returns predictions in seconds.
 8. The URL will appear: http://127.0.0.1:5000/ 
 9. Paste the URL to a web browser. 
-10. (For Prototype Purposes) Enter exactly Enter the Pollutant: CO Enter the State : Washington Enter the Date : 07/27/2021 (or other future date.)
+10. (For Prototype Purposes Enter exactly) Enter the Pollutant: CO Enter the State : Washington Enter the Date : 07/27/2021 (or other future date.)
 11. (Wait about five minutes) creating the model on every input, it's repeating a process on every request.
 12. The results of AQI will appear on the web browser. 
 
