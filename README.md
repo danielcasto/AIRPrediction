@@ -12,7 +12,7 @@ pip install AIRPrediction
 
 ## Commands to Deploy AIRPrediction Model Using Flask API
 1. Open your command prompt.
-2. (command) pip install AIRPrediction.
+2. (command) pip install AIRPrediction
 3. Download pollution_us_2000_2016.csv(382.37 MB): https://www.kaggle.com/sogun3/uspollution
 4. Extract pollution_us_2000_2016.csv(382.37 MB) in the src folder (e.g. C:\Users\AIRPrediction\src)
 5. (command) cd (path to src folder. e.g. C:\Users\AIRPrediction\src)
