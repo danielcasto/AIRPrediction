@@ -10,7 +10,7 @@ pollution_us_2000_2016.csv(382.37 MB)
 ## Package Name for PIP Installation
 pip install AIRPrediction
 
-## Command to Deploy AIRPrediction Model Using Flask API
+## Commands to Deploy AIRPrediction Model Using Flask API
 1. Open your command prompt.
 2. (command) pip install AIRPrediction.
 3. Download pollution_us_2000_2016.csv(382.37 MB): https://www.kaggle.com/sogun3/uspollution
