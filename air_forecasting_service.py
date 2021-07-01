@@ -57,7 +57,7 @@ except ImportError:
   import pandas as pd 
   import statsmodels
 
-dataset_csv = "C:\Users\Yuko's PC\Desktop\AIR_ver11\AIR_ver11\src\pollution_us_2000_2016"
+dataset_csv = "pollution_us_2000_2016"
 GROUP_BY = ['NO2 AQI','O3 AQI','SO2 AQI','CO AQI']
 USE_LIMITED_DATASET = False
 
