@@ -21,7 +21,7 @@ pip install AIRPrediction
 8. The URL will appear: http://127.0.0.1:5000/ 
 9. Paste the URL to a web browser. 
 10. (For Prototype Purposes Enter exactly) Enter the Pollutant: CO Enter the State : Washington Enter the Date : 07/27/2021 (or other future date.)
-11. (Wait about five minutes) Creating the model on every input, it's repeating a process on every request.
+11. (Wait about eight to ten minutes) Creating the model on every input, it's repeating a process on every request.
 12. The results of AQI will appear on the web browser. 
 
 ## Command to Run Sample App
