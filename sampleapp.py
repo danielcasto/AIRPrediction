@@ -4,7 +4,8 @@ from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 import sys
 import datetime
-from Time_Series_Models.prophet_model import prediction
+from Time_Series_Models.prophet_model import prophet_prediction
+from Time_Series_Models.ARIMA_model import arima_prediction
 
 
 
@@ -117,8 +118,10 @@ class MainWindow(QWidget):
         
         try:
             self.msg_text.setText('loading ...')
-            yhat_val = prediction(pl, city, date_string)
-            self.msg_text.setText(f'The forecast for {pl} in {city} is {yhat_val}')
+            prophet_result = prophet_prediction(pl, city, date_string)
+            #arima_result = arima_prediction(pl, city, date_string)
+            self.msg_text.setText(f'The forecast for {pl} in {city} is {prophet_result}')
+
         except:
             self.msg_text.setText('Error: something went wrong in prediction')
             print('Error: something went wrong in prediction')
