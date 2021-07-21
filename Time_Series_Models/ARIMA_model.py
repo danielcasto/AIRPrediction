@@ -7,7 +7,7 @@ def arima_prediction(pollutant, city, date):
     pollutant_choice = pollutant + " AQI"
 
     # read the csv file into a dataframe
-    df = pd.read_csv('pollution_us_2000_2016.csv')
+    df = pd.read_csv('data/pollution_us_2000_2016.csv')
 
     # delete unnecessary data columns
     df = df.drop(columns=['Unnamed: 0', 'NO2 Units', 'O3 Units', 'SO2 Units', 'CO Units'])
