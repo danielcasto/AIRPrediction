@@ -1,12 +1,13 @@
 import pandas as pd
 from prophet import Prophet
+from datetime import datetime
 
 
 def prophet_prediction(pollutant, city, date):
     pollutant_choice = pollutant + " AQI"
 
     # read the csv file into a dataframe
-    df = pd.read_csv('pollution_us_2000_2016.csv')
+    df = pd.read_csv('data/pollution_us_2000_2016.csv')
 
     # delete unnecessary data columns
     df = df.drop(columns=['Unnamed: 0', 'NO2 Units', 'O3 Units', 'SO2 Units', 'CO Units'])
@@ -27,6 +28,12 @@ def prophet_prediction(pollutant, city, date):
     # create subset of dataset to include only city and column selected for analysis
     new_df = mean_aqi.loc[mean_aqi['City'] == city, ['date', pollutant_choice]]
 
+    date_format = "%Y-%m-%d"
+
+    start_date = datetime.strptime('2016-04-30', date_format)
+    target_date = datetime.strptime(date, date_format)
+    date_difference = target_date - start_date
+
     new_df = new_df.rename(columns={"date": "ds",
                                     pollutant_choice: "y"})
 
@@ -37,7 +44,7 @@ def prophet_prediction(pollutant, city, date):
     prophet_model.fit(new_df)
 
     # the parameter 'periods' represents the number of days you want to predict after 2016-04-30
-    future = prophet_model.make_future_dataframe(periods=2500)
+    future = prophet_model.make_future_dataframe(periods = date_difference.days)
 
     forecast = prophet_model.predict(future)
 
