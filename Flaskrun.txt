@@ -1,5 +1,0 @@
-1. Install all the requirements by doing "pip3 install -r requirements.txt"
-
-2. Run the flask app by "python3 forecast-flask-app.py"
-
-
