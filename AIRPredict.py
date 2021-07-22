@@ -1,7 +1,8 @@
 import datetime
 import sys
 from timeit import timeit
-from Time_Series_Models.prophet_model import prediction
+from Time_Series_Models.prophet_model import prophet_prediction
+from Time_Series_Models.prophet_model import arima_prediction
 
 
 def validate_date(date):
@@ -30,32 +31,44 @@ def validate_date(date):
         return False, "Error: Invalid Date."
 
 
-def validate_input(pollutant, date):
+def validate_input(pollutant, date, filename):
     validate = True
     return_message = ""
     valid_pollutants = ['NO2', 'O3', 'SO2', 'CO']
-    if pollutant not in valid_pollutants:
-        validate = False
-        return_message = "Error: Invalid Pollutants."
+    if os.path.isfile(filename):
+        if pollutant not in valid_pollutants:
+            validate = False
+            return_message = "Error: Invalid Pollutants."
+        else:
+            validate, return_message = validate_date(date)
     else:
-        validate, return_message = validate_date(date)
+        validate = False
+        return_message = "Error: File not found."
     return validate, return_message
 
 
-def prophet(pollutant, city, date):
-    validate, return_message = validate_input(pollutant, date)
+def prophet(pollutant, city, date, filename):
+    validate, return_message = validate_input(pollutant, date, filename)
     if validate:
-        return prediction(pollutant, city, date)
+        return prophet_prediction(pollutant, city, date)
     else:
         return return_message
 
 
-# Work in Progress
-def compare_models(pollutant, city, date):
-    test_list = ((prophet, pollutant, city, date), (prophet, pollutant, city, date))
-    output_list = []
-    if validate_input(pollutant, date)[0]:
-        for entry in test_list:
-            output_list.append(timeit(lambda: entry[0](*entry[1:]), number=10))
+def arima(pollutant, city, date, filename):
+    validate, return_message = validate_input(pollutant, date, filename)
+    if validate:
+        return arima_prediction(pollutant, city, date)
     else:
-        return validate_input(pollutant, date)[1]
+        return return_message
+
+
+def compare_models(pollutant, city, date, filename):
+    test_list = ((prophet, pollutant, city, date, filename), (arima, pollutant, city, date, filename))
+    output_list = []
+    if validate_input(pollutant, date, filename)[0]:
+        for entry in test_list:
+            output_list.append(timeit(lambda: entry[0](*entry[1:]), number=5))
+        return output_list
+    else:
+        return validate_input(pollutant, date, filename)[1]
