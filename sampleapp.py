@@ -27,6 +27,16 @@ class MainWindow(QWidget):
         self.end_date_label = QLabel('Enter Future Date (MM/DD/YYYY): ')
         self.end_date_edit = QLineEdit()
 
+        selector = QLabel('Select a forecasting method')
+        self.radiobtn1 = QRadioButton('Prophet Model')
+        self.radiobtn1.setMinimumHeight(40)
+        self.radiobtn2 = QRadioButton('Arima')
+        self.radiobtn2.setMinimumHeight(40)
+        self.radiobtn3 = QRadioButton('LSTM')
+        self.radiobtn3.setMinimumHeight(40)
+        self.radiobtn4 = QRadioButton('Compare')
+        self.radiobtn4.setMinimumHeight(40)
+
         self.msg_text = QLabel()
 
         self.button_one = QPushButton("Get Results")
@@ -40,11 +50,17 @@ class MainWindow(QWidget):
         self.grid.addWidget(self.end_date_label, 3, 0)
         self.grid.addWidget(self.end_date_edit, 3, 1)
 
+        self.grid.addWidget(selector, 4, 0)
+        self.grid.addWidget(self.radiobtn1, 5, 0)
+        self.grid.addWidget(self.radiobtn2, 5, 1)
+        self.grid.addWidget(self.radiobtn3, 6, 0)
+        self.grid.addWidget(self.radiobtn4, 6, 1)
+
         self.msg_text.setMaximumSize(1000, 50)
         self.grid.addWidget(self.msg_text, 4, 1)
 
         self.button_one.clicked.connect(self.__submit_input)
-        self.grid.addWidget(self.button_one, 5, 1)
+        self.grid.addWidget(self.button_one, 7, 1)
 
         self.show()
 
@@ -118,9 +134,16 @@ class MainWindow(QWidget):
         
         try:
             self.msg_text.setText('loading ...')
-            prophet_result = prophet_prediction(pl, city, date_string)
-            #arima_result = arima_prediction(pl, city, date_string)
-            self.msg_text.setText(f'The forecast for {pl} in {city} is {prophet_result}')
+            if self.radiobtn1.isChecked():
+                prophet_result = prophet_prediction(pl, city, date_string)
+                #arima_result = arima_prediction(pl, city, date_string)
+                self.msg_text.setText(f'The forecast for {pl} in {city} is {prophet_result}')
+            elif self.radiobtn2.isChecked():
+                self.msg_text.setText(f'The forecast for {pl} in {city} is filler 1')
+            elif self.radiobtn3.isChecked():
+                self.msg_text.setText(f'The forecast for {pl} in {city} is filler 2')
+            elif self.radiobtn4.isChecked():
+                self.msg_text.setText(f'The forecast for {pl} in {city} is filler 3')
 
         except:
             self.msg_text.setText('Error: something went wrong in prediction')
