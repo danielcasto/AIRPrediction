@@ -1,9 +1,12 @@
 import datetime
+import timeit
+
 from PySide2 import QtCore
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 import sys
 import datetime
+import time
 from Time_Series_Models.prophet_model import prophet_prediction
 from Time_Series_Models.ARIMA_model import arima_prediction
 
@@ -24,6 +27,12 @@ class MainWindow(QWidget):
         self.city_label = QLabel('Enter City: ')
         self.city_edit = QLineEdit()
 
+        self.county_label = QLabel('Enter County: ')
+        self.county_edit = QLineEdit()
+
+        self.state_label = QLabel('Enter State: ')
+        self.state_edit = QLineEdit()
+
         self.end_date_label = QLabel('Enter Future Date (MM/DD/YYYY): ')
         self.end_date_edit = QLineEdit()
 
@@ -32,10 +41,8 @@ class MainWindow(QWidget):
         self.radiobtn1.setMinimumHeight(40)
         self.radiobtn2 = QRadioButton('Arima')
         self.radiobtn2.setMinimumHeight(40)
-        self.radiobtn3 = QRadioButton('LSTM')
+        self.radiobtn3 = QRadioButton('Compare Both Models')
         self.radiobtn3.setMinimumHeight(40)
-        self.radiobtn4 = QRadioButton('Compare')
-        self.radiobtn4.setMinimumHeight(40)
 
         self.msg_text = QLabel()
 
@@ -47,17 +54,22 @@ class MainWindow(QWidget):
         self.grid.addWidget(self.city_label, 1, 0)
         self.grid.addWidget(self.city_edit, 1, 1)
 
-        self.grid.addWidget(self.end_date_label, 3, 0)
-        self.grid.addWidget(self.end_date_edit, 3, 1)
+        self.grid.addWidget(self.county_label, 2, 0)
+        self.grid.addWidget(self.county_edit, 2, 1)
 
-        self.grid.addWidget(selector, 4, 0)
-        self.grid.addWidget(self.radiobtn1, 5, 0)
-        self.grid.addWidget(self.radiobtn2, 5, 1)
-        self.grid.addWidget(self.radiobtn3, 6, 0)
-        self.grid.addWidget(self.radiobtn4, 6, 1)
+        self.grid.addWidget(self.state_label, 3, 0)
+        self.grid.addWidget(self.state_edit, 3, 1)
+
+        self.grid.addWidget(self.end_date_label, 4, 0)
+        self.grid.addWidget(self.end_date_edit, 4, 1)
+
+        self.grid.addWidget(selector, 5, 0)
+        self.grid.addWidget(self.radiobtn1, 6, 0)
+        self.grid.addWidget(self.radiobtn2, 6, 1)
+        self.grid.addWidget(self.radiobtn3, 6, 2)
 
         self.msg_text.setMaximumSize(1000, 50)
-        self.grid.addWidget(self.msg_text, 4, 1)
+        self.grid.addWidget(self.msg_text, 5, 1)
 
         self.button_one.clicked.connect(self.__submit_input)
         self.grid.addWidget(self.button_one, 7, 1)
@@ -105,6 +117,8 @@ class MainWindow(QWidget):
             return
 
         city = self.city_edit.text()
+        county = self.county_edit.text()
+        state = self.state_edit.text()
 
         date_feature_available = True
 
@@ -114,7 +128,7 @@ class MainWindow(QWidget):
             ed_valid, ed_datetime = self.__validate_date(ed)
 
             if ed_valid:
-                print('Date format are correct')
+                print('Date format is correct')
             else:
                 self.msg_text.setText('Error: Date format is incorrect')
                 print('Error: Date format is incorrect')
@@ -136,14 +150,23 @@ class MainWindow(QWidget):
             self.msg_text.setText('loading ...')
             if self.radiobtn1.isChecked():
                 prophet_result = prophet_prediction(pl, city, date_string)
-                #arima_result = arima_prediction(pl, city, date_string)
-                self.msg_text.setText(f'The forecast for {pl} in {city} is {prophet_result}')
+                self.msg_text.setText(f'The forecast for {pl} in {city}, {county}, {state} is {prophet_result}')
             elif self.radiobtn2.isChecked():
-                self.msg_text.setText(f'The forecast for {pl} in {city} is filler 1')
+                arima_result = arima_prediction(pl, city, date_string)
+                self.msg_text.setText(f'The forecast for {pl} in {city}, {county}, {state} is {arima_result}')
             elif self.radiobtn3.isChecked():
-                self.msg_text.setText(f'The forecast for {pl} in {city} is filler 2')
-            elif self.radiobtn4.isChecked():
-                self.msg_text.setText(f'The forecast for {pl} in {city} is filler 3')
+                start_one = time.time()
+                prophet_result = prophet_prediction(pl, city, date_string)
+                end_one = time.time()
+                prophet_time = end_one - start_one
+                start_two = time.time()
+                arima_result = arima_prediction(pl, city, date_string)
+                end_two = time.time()
+                arima_time = end_two - start_two
+                self.msg_text.setText(f'The forecast for {pl} in {city}, {county}, {state} is {prophet_result} and took'
+                                      f'\n{prophet_time} seconds, and The forecast for {pl} in {city}, {county}, {state}'
+                                      f'\n is {arima_result} and took {arima_time} seconds')
+
 
         except:
             self.msg_text.setText('Error: something went wrong in prediction')
