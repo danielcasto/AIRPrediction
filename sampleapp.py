@@ -163,8 +163,8 @@ class MainWindow(QWidget):
                 arima_result = arima_prediction(pl, city, date_string)
                 end_two = time.time()
                 arima_time = end_two - start_two
-                self.msg_text.setText(f'The forecast for {pl} in {city}, {county}, {state} is {prophet_result} and took'
-                                      f'\n{prophet_time} seconds, and The forecast for {pl} in {city}, {county}, {state}'
+                self.msg_text.setText(f'The prophet forecast for {pl} in {city}, {county}, {state} is {prophet_result} and took'
+                                      f'\n{prophet_time} seconds, and the ARIMA forecast for {pl} in {city}, {county}, {state}'
                                       f'\n is {arima_result} and took {arima_time} seconds')
 
 
