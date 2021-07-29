@@ -103,7 +103,7 @@ class MainWindow(QWidget):
                     self.msg_text.setText(return_message)
             elif self.radiobtn3.isChecked():
                 if validate:
-                    self.msg_text.setText('Input Validation Success! Running Model Comparison (Fields cannot be edited at this time)')
+                    self.msg_text.setText('Input Validation Success! Running Model Comparison... (Fields cannot be edited at this time)')
                     QApplication.processEvents()
                     results = compare_models(pl, state, county, city, date_string)
                     self.msg_text.setText(f'Prophet Prediction: {results[0]} {results[1]}   Time: {results[2]} seconds'
