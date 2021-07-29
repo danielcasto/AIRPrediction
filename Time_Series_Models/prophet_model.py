@@ -32,7 +32,6 @@ def prophet_prediction(pollutant, state, county, city, date):
 
     date_format = "%Y-%m-%d"
 
-    new_df = new_df.reset_index()
     start_date_temp = new_df.iloc[len(new_df.index)-1]['date']
     start_date = str(start_date_temp)[:10]
 

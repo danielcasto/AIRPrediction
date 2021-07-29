@@ -152,20 +152,22 @@ class MainWindow(QWidget):
                 prophet_result, pollutant_unit = prophet_prediction(pl, state, county, city, date_string)
                 self.msg_text.setText(f'The forecast for {pl} in {city}, {county}, {state} is {prophet_result} {pollutant_unit}')
             elif self.radiobtn2.isChecked():
-                arima_result = arima_prediction(pl, city, date_string)
-                self.msg_text.setText(f'The forecast for {pl} in {city}, {county}, {state} is {arima_result}')
+                arima_result, pollutant_unit = arima_prediction(pl, state, county, city, date_string)
+                self.msg_text.setText(f'The forecast for {pl} in {city}, {county}, {state} is {arima_result} {pollutant_unit}')
             elif self.radiobtn3.isChecked():
                 start_one = time.time()
-                prophet_result = prophet_prediction(pl, city, date_string)
+                prophet_result, pollutant_unit = prophet_prediction(pl, state, county, city, date_string)
                 end_one = time.time()
                 prophet_time = end_one - start_one
                 start_two = time.time()
-                arima_result = arima_prediction(pl, city, date_string)
+                arima_result, pollutant_unit = arima_prediction(pl, state, county, city, date_string)
                 end_two = time.time()
                 arima_time = end_two - start_two
-                self.msg_text.setText(f'The prophet forecast for {pl} in {city}, {county}, {state} is {prophet_result} and took'
-                                        f'\n{prophet_time} seconds, and the ARIMA forecast for {pl} in {city}, {county}, {state}'
-                                        f'\n is {arima_result} and took {arima_time} seconds')
+                self.msg_text.setText(f'The prophet forecast for {pl} in {city}, {county}, {state} is {prophet_result} {pollutant_unit} and took'
+                                        f'\n{prophet_time} seconds.'
+                                        f'\nThe ARIMA forecast for {pl} in {city}, {county}, {state} is {arima_result} {pollutant_unit} and took'
+                                        f'\n{arima_time} seconds.')
+
         except:
             self.msg_text.setText('Error: something went wrong in prediction')
             print('Error: something went wrong in prediction')
