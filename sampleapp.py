@@ -51,14 +51,14 @@ class MainWindow(QWidget):
         self.grid.addWidget(self.pollutant_label, 0, 0)
         self.grid.addWidget(self.pollutant_edit, 0, 1)
 
-        self.grid.addWidget(self.city_label, 1, 0)
-        self.grid.addWidget(self.city_edit, 1, 1)
+        self.grid.addWidget(self.state_label, 1, 0)
+        self.grid.addWidget(self.state_edit, 1, 1)
 
         self.grid.addWidget(self.county_label, 2, 0)
         self.grid.addWidget(self.county_edit, 2, 1)
 
-        self.grid.addWidget(self.state_label, 3, 0)
-        self.grid.addWidget(self.state_edit, 3, 1)
+        self.grid.addWidget(self.city_label, 3, 0)
+        self.grid.addWidget(self.city_edit, 3, 1)
 
         self.grid.addWidget(self.end_date_label, 4, 0)
         self.grid.addWidget(self.end_date_edit, 4, 1)
@@ -116,9 +116,9 @@ class MainWindow(QWidget):
             print('Error: pollutant must be NO2, O3, SO2, or CO')
             return
 
-        city = self.city_edit.text()
-        county = self.county_edit.text()
         state = self.state_edit.text()
+        county = self.county_edit.text()
+        city = self.city_edit.text()
 
         date_feature_available = True
 
@@ -149,8 +149,8 @@ class MainWindow(QWidget):
         try:
             self.msg_text.setText('loading ...')
             if self.radiobtn1.isChecked():
-                prophet_result = prophet_prediction(pl, city, date_string)
-                self.msg_text.setText(f'The forecast for {pl} in {city}, {county}, {state} is {prophet_result}')
+                prophet_result, pollutant_unit = prophet_prediction(pl, state, county, city, date_string)
+                self.msg_text.setText(f'The forecast for {pl} in {city}, {county}, {state} is {prophet_result} {pollutant_unit}')
             elif self.radiobtn2.isChecked():
                 arima_result = arima_prediction(pl, city, date_string)
                 self.msg_text.setText(f'The forecast for {pl} in {city}, {county}, {state} is {arima_result}')
@@ -164,13 +164,12 @@ class MainWindow(QWidget):
                 end_two = time.time()
                 arima_time = end_two - start_two
                 self.msg_text.setText(f'The prophet forecast for {pl} in {city}, {county}, {state} is {prophet_result} and took'
-                                      f'\n{prophet_time} seconds, and the ARIMA forecast for {pl} in {city}, {county}, {state}'
-                                      f'\n is {arima_result} and took {arima_time} seconds')
-
-
+                                        f'\n{prophet_time} seconds, and the ARIMA forecast for {pl} in {city}, {county}, {state}'
+                                        f'\n is {arima_result} and took {arima_time} seconds')
         except:
             self.msg_text.setText('Error: something went wrong in prediction')
             print('Error: something went wrong in prediction')
+
 
 
 def main():
