@@ -31,7 +31,7 @@ class MainWindow(QWidget):
         self.end_date_label = QLabel('Enter Future Date (MM/DD/YYYY): ')
         self.end_date_edit = QLineEdit()
 
-        selector = QLabel('Select a forecasting method')
+        selector = QLabel('Select a forecasting method below:')
         self.radiobtn1 = QRadioButton('Prophet Model')
         self.radiobtn1.setMinimumHeight(40)
         self.radiobtn2 = QRadioButton('Arima')
@@ -73,6 +73,7 @@ class MainWindow(QWidget):
 
     def __submit_input(self):
         self.msg_text.setText('')
+        QApplication.processEvents()
         pl = self.pollutant_edit.text()
         state = self.state_edit.text()
         county = self.county_edit.text()
@@ -81,24 +82,29 @@ class MainWindow(QWidget):
         if date_feature_available:
             ed = self.end_date_edit.text()
         try:
-            self.msg_text.setText('Validating Input...')
+            self.msg_text.setText('Validating Input... (Fields cannot be edited at this time)')
+            QApplication.processEvents()
             validate, return_message, date_string = validate_input(pl, state, county, city, ed)
             if self.radiobtn1.isChecked():
                 if validate:
-                    self.msg_text.setText('Running Prophet Model...')
+                    self.msg_text.setText('Input Validation Success! Running Prophet Model... (Fields cannot be edited at this time)')
+                    QApplication.processEvents()
                     prophet_result, pollutant_unit = prophet_prediction(pl, state, county, city, date_string)
                     self.msg_text.setText(f'The forecast for {pl} in {city}, {county}, {state} is {prophet_result} {pollutant_unit}')
                 else:
                     self.msg_text.setText(return_message)
             elif self.radiobtn2.isChecked():
                 if validate:
-                    self.msg_text.setText('Running ARIMA Model...')
+                    self.msg_text.setText('Input Validation Success! Running ARIMA Model... (Fields cannot be edited at this time)')
+                    QApplication.processEvents()
                     arima_result, pollutant_unit = arima_prediction(pl, state, county, city, date_string)
                     self.msg_text.setText(f'The forecast for {pl} in {city}, {county}, {state} is {arima_result} {pollutant_unit}')
                 else:
                     self.msg_text.setText(return_message)
             elif self.radiobtn3.isChecked():
                 if validate:
+                    self.msg_text.setText('Input Validation Success! Running Model Comparison (Fields cannot be edited at this time)')
+                    QApplication.processEvents()
                     results = compare_models(pl, state, county, city, date_string)
                     self.msg_text.setText(f'Prophet Prediction: {results[0]} {results[1]}   Time: {results[2]} seconds'
                                             f'\nARIMA Prediction: {results[3]} {results[4]}    Time: {results[5]} seconds.')

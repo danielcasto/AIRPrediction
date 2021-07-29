@@ -26,6 +26,9 @@ def validate_input(pollutant, state, county, city, date):
     return_message = ""
     valid_pollutants = ['NO2', 'O3', 'SO2', 'CO']
     entered_datetime = ""
+    if pollutant == "" or state == "" or county == "" or city == "" or date == "":
+        return False, "Error: One or more fields left blank. Please fill out all fields.", entered_datetime
+
     if pollutant not in valid_pollutants:
         validate = False
         return_message = "Error: Invalid Pollutant."
