@@ -1,15 +1,10 @@
-import datetime
-import timeit
-
 from PySide2 import QtCore
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 import sys
 import datetime
 import time
-from Time_Series_Models.prophet_model import prophet_prediction
-from Time_Series_Models.ARIMA_model import arima_prediction
-
+from AIRPrediction import *
 
 
 class MainWindow(QWidget):
@@ -76,84 +71,32 @@ class MainWindow(QWidget):
 
         self.show()
 
-
-    def __validate_date(self, date):
-        # returns True if valid, false if not
-        try:
-            if date[2] != '/' or date[5] != '/':
-                return False, None
-
-            month = date[:2]
-            day = date[3:5]
-            year = date[6:]
-
-            entered_datetime = datetime.datetime(int(year), int(month), int(day))
-
-            current_date = datetime.date.today().strftime('%m/%d/%Y')
-            current_month = current_date[:2]
-            current_day = current_date[3:5]
-            current_year = current_date[6:]
-            current_datetime = datetime.datetime(int(current_year), int(current_month), int(current_day))
-
-            if entered_datetime > current_datetime:
-                return True, entered_datetime
-            else:
-                return False, None
-            
-        except:
-            return False, None
-
-
     def __submit_input(self):
         self.msg_text.setText('')
-
-        pollutants = ['NO2', 'O3', 'SO2', 'CO']
-
         pl = self.pollutant_edit.text()
-
-        if pl not in pollutants:
-            self.msg_text.setText('Error: pollutant must be NO2, O3, SO2, or CO')
-            print('Error: pollutant must be NO2, O3, SO2, or CO')
-            return
-
         state = self.state_edit.text()
         county = self.county_edit.text()
         city = self.city_edit.text()
-
         date_feature_available = True
-
         if date_feature_available:
-
             ed = self.end_date_edit.text()
-            ed_valid, ed_datetime = self.__validate_date(ed)
-
-            if ed_valid:
-                print('Date format is correct')
-            else:
-                self.msg_text.setText('Error: Date format is incorrect')
-                print('Error: Date format is incorrect')
-                return
-        
-        month_string = str(ed_datetime.month)
-        day_string = str(ed_datetime.day)
-
-        if len(month_string) == 1:
-            month_string = '0' + month_string
-
-        if len(day_string) == 1:
-            day_string = '0' + day_string
-
-        date_string = str(ed_datetime.year) + '-' + month_string + '-' + day_string
-        print(date_string)
-        
         try:
-            self.msg_text.setText('loading ...')
+            self.msg_text.setText('Validating Input...')
+            validate, return_message, date_string = validate_input(pl, state, county, city, ed)
             if self.radiobtn1.isChecked():
-                prophet_result, pollutant_unit = prophet_prediction(pl, state, county, city, date_string)
-                self.msg_text.setText(f'The forecast for {pl} in {city}, {county}, {state} is {prophet_result} {pollutant_unit}')
+                if validate:
+                    self.msg_text.setText('Running Prophet Model...')
+                    prophet_result, pollutant_unit = prophet_prediction(pl, state, county, city, date_string)
+                    self.msg_text.setText(f'The forecast for {pl} in {city}, {county}, {state} is {prophet_result} {pollutant_unit}')
+                else:
+                    self.msg_text.setText(return_message)
             elif self.radiobtn2.isChecked():
-                arima_result, pollutant_unit = arima_prediction(pl, state, county, city, date_string)
-                self.msg_text.setText(f'The forecast for {pl} in {city}, {county}, {state} is {arima_result} {pollutant_unit}')
+                if validate:
+                    self.msg_text.setText('Running ARIMA Model...')
+                    arima_result, pollutant_unit = arima_prediction(pl, state, county, city, date_string)
+                    self.msg_text.setText(f'The forecast for {pl} in {city}, {county}, {state} is {arima_result} {pollutant_unit}')
+                else:
+                    self.msg_text.setText(return_message)
             elif self.radiobtn3.isChecked():
                 start_one = time.time()
                 prophet_result, pollutant_unit = prophet_prediction(pl, state, county, city, date_string)
@@ -171,7 +114,6 @@ class MainWindow(QWidget):
         except:
             self.msg_text.setText('Error: something went wrong in prediction')
             print('Error: something went wrong in prediction')
-
 
 
 def main():
