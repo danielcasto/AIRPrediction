@@ -1,13 +1,27 @@
 import datetime
 import sys
-import os
 import csv
-from timeit import timeit
+import time
 from Time_Series_Models.prophet_model import prophet_prediction
 from Time_Series_Models.ARIMA_model import arima_prediction
+"""
+..  module:: AIRPrediction
+    :synopsis: The driver file that is to be imported to utilize the AIRPrediction Framework.
+    Includes a function for input validation, prophet predictions, ARIMA predictions, and comparison of the two models.
+..  moduleauthor:: Derek Pena <derek.pena@ufl.edu>
+"""
 
 
 def validate_input(pollutant, state, county, city, date):
+    """ Validates the input provided by a user. To be used before any predictions are made.
+        :param pollutant: The specified pollutant to predict (NO2, O3, SO2, CO).
+        :param state: The location parameter indicating the state in the United States of America to predict for.
+        :param county: The location parameter indicating the county in the state to predict for.
+        :param city: The location parameter indicating the city in the county to predict for.
+        :param date: The calendar date to prediction for.
+        :return: A boolean that determines where validation was successful, a string that contains any error messages
+        and a string that rewrites the data parameter in YYYY/MM/DD format.
+    """
     validate = True
     return_message = ""
     valid_pollutants = ['NO2', 'O3', 'SO2', 'CO']
@@ -83,20 +97,49 @@ def validate_input(pollutant, state, county, city, date):
 
 
 def prophet(pollutant, state, county, city, date):
+    """ A function that uses the prophet_prediction from prophet_model.py to avoid using multiple import statements.
+        :param pollutant: The specified pollutant to predict (NO2, O3, SO2, CO).
+        :param state: The location parameter indicating the state in the United States of America to predict for.
+        :param county: The location parameter indicating the county in the state to predict for.
+        :param city: The location parameter indicating the city in the county to predict for.
+        :param date: The calendar date to prediction for.
+        :return: The prediction made by the prophet model given the above parameters and the units that prediction is in.
+    """
     return prophet_prediction(pollutant, state, county, city, date)
 
 
 def arima(pollutant, state, county, city, date):
+    """ A function that uses the arima_prediction from ARIMA_model.py to avoid using multiple import statements.
+        :param pollutant: The specified pollutant to predict (NO2, O3, SO2, CO).
+        :param state: The location parameter indicating the state in the United States of America to predict for.
+        :param county: The location parameter indicating the county in the state to predict for.
+        :param city: The location parameter indicating the city in the county to predict for.
+        :param date: The calendar date to prediction for.
+        :return: The prediction made by the ARIMA model given the above parameters and the units that prediction is in.
+    """
     return arima_prediction(pollutant, state, county, city, date)
 
 
 def compare_models(pollutant, state, county, city, date):
-    validate, return_message, date = validate_input(pollutant, state, county, city, date)
-    if validate:
-        test_list = ((prophet, pollutant, state, county, city, date), (arima, pollutant, state, county, city, date))
-        output_list = []
-        for entry in test_list:
-            output_list.append(timeit(lambda: entry[0](*entry[1:]), number=5))
-        return output_list
-    else:
-        return return_message
+    """ A function that times both prediction models in order to compare their speed and their output.
+    :param pollutant: The specified pollutant to predict (NO2, O3, SO2, CO).
+    :param state: The location parameter indicating the state in the United States of America to predict for.
+    :param county: The location parameter indicating the county in the state to predict for.
+    :param city: The location parameter indicating the city in the county to predict for.
+    :param date: The calendar date to prediction for.
+    :return: A list that contains the outputs for each prediction model as well as the time taken to run them.
+    """
+    output_list = []
+    start_one = time.time()
+    prediction, units = prophet_prediction(pollutant, state, county, city, date)
+    end_one = time.time()
+    output_list.append(prediction)
+    output_list.append(units)
+    output_list.append(end_one - start_one)
+    start_two = time.time()
+    prediction, units = arima_prediction(pollutant, state, county, city, date)
+    end_two = time.time()
+    output_list.append(prediction)
+    output_list.append(units)
+    output_list.append(end_two - start_two)
+    return output_list

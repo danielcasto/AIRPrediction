@@ -61,13 +61,13 @@ class MainWindow(QWidget):
         self.grid.addWidget(selector, 5, 0)
         self.grid.addWidget(self.radiobtn1, 6, 0)
         self.grid.addWidget(self.radiobtn2, 6, 1)
-        self.grid.addWidget(self.radiobtn3, 6, 2)
+        self.grid.addWidget(self.radiobtn3, 7, 0)
 
         self.msg_text.setMaximumSize(1000, 50)
         self.grid.addWidget(self.msg_text, 5, 1)
 
         self.button_one.clicked.connect(self.__submit_input)
-        self.grid.addWidget(self.button_one, 7, 1)
+        self.grid.addWidget(self.button_one, 8, 1)
 
         self.show()
 
@@ -98,18 +98,14 @@ class MainWindow(QWidget):
                 else:
                     self.msg_text.setText(return_message)
             elif self.radiobtn3.isChecked():
-                start_one = time.time()
-                prophet_result, pollutant_unit = prophet_prediction(pl, state, county, city, date_string)
-                end_one = time.time()
-                prophet_time = end_one - start_one
-                start_two = time.time()
-                arima_result, pollutant_unit = arima_prediction(pl, state, county, city, date_string)
-                end_two = time.time()
-                arima_time = end_two - start_two
-                self.msg_text.setText(f'The prophet forecast for {pl} in {city}, {county}, {state} is {prophet_result} {pollutant_unit} and took'
-                                        f'\n{prophet_time} seconds.'
-                                        f'\nThe ARIMA forecast for {pl} in {city}, {county}, {state} is {arima_result} {pollutant_unit} and took'
-                                        f'\n{arima_time} seconds.')
+                if validate:
+                    results = compare_models(pl, state, county, city, date_string)
+                    self.msg_text.setText(f'Prophet Prediction: {results[0]} {results[1]}   Time: {results[2]} seconds'
+                                            f'\nARIMA Prediction: {results[3]} {results[4]}    Time: {results[5]} seconds.')
+                else:
+                    self.msg_text.setText(return_message)
+            else:
+                self.msg_text.setText(f'Please select a prediction method.')
 
         except:
             self.msg_text.setText('Error: something went wrong in prediction')
