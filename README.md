@@ -3,6 +3,9 @@
 ## Contributors
 Daniel Casto, Colin Naehr, Derek Pena, and Haotian Wang
 
+##Special Thanks
+Yuko Matsumoto - Pitching the idea for AIRPrediction, Forming the Team, and Performing extensive research into the Time Series Models (Prophet and ARIMA).
+
 ## Description
 (Framework) AIR Quality Forecast Model leveraging Time Series Models to enable timely preventive measures to reduce harmful impact on U.S. citizens.
 
