@@ -8,7 +8,8 @@ from Time_Series_Models.ARIMA_model import arima_prediction
 ..  module:: AIRPrediction
     :synopsis: The driver file that is to be imported to utilize the AIRPrediction Framework.
     Includes a function for input validation, prophet predictions, ARIMA predictions, and comparison of the two models.
-..  moduleauthor:: Derek Pena <derek.pena@ufl.edu>
+..  moduleauthors:: Derek Pena <derek.pena@ufl.edu>, Colin Naehr <cnaehr@ufl.edu>, Daniel Casto <danielcasto@ufl.edu>, 
+    Haotian Wang <haotianwang@ufl.edu>
 """
 
 

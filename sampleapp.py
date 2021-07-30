@@ -7,8 +7,23 @@ import time
 from AIRPrediction import *
 
 
+"""
+..  module:: sampleapp
+    :synopsis: The sample app that demonstrates the functionality of the AIRPrediction framework. Creates a UI that 
+    accepts user input and calls the functions in the AIRPrediction to utilize the Time Series Models to produce
+    predictions.
+..  moduleauthors:: Colin Naehr <cnaehr@ufl.edu>, Daniel Casto <danielcasto@ufl.edu>, Derek Pena <derek.pena@ufl.edu>,
+    Haotian Wang <haotianwang@ufl.edu>
+"""
+
+
 class MainWindow(QWidget):
+    """ Class that holds all of the UI elements of the sample app and their functionality.
+        :parent class: QWidget
+    """
     def __init__(self):
+        """ Initializes the UI elements of the sample app.
+        """
         super().__init__()
         self.setGeometry(0, 0, 1000, 700)
         self.setWindowTitle("Pollutant Forecaster")
@@ -72,6 +87,11 @@ class MainWindow(QWidget):
         self.show()
 
     def __submit_input(self):
+        """ Reads input and outputs state updates informing the user of errors, progress, and results. Functions from
+            AIRPrediction are called to validate input and call on the prediction models.
+            Called when submit button is pressed.
+            :return: None
+        """
         self.msg_text.setText('')
         QApplication.processEvents()
         pl = self.pollutant_edit.text()
@@ -119,6 +139,9 @@ class MainWindow(QWidget):
 
 
 def main():
+    """ Generates the window the application is hosted on.
+        :return: None
+    """
     app = QApplication(sys.argv)
     main_window = MainWindow()
     sys.exit(app.exec_())
