@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name = 'AIRPrediction',
     version = '0.0.5',
-    scripts = ['sampleapp.py', 'Time_Series_Models/prophet_model.py'],
+    scripts = ['sampleapp.py', 'AIRPrediction.py', 'Time_Series_Models/ARIMA_model.py' 'Time_Series_Models/prophet_model.py'],
     url = 'https://github.com/Data-for-Good-by-UF/AIRPrediction',
     license = 'MIT',
     install_requires = ['PySide2', 'pystan==2.19.1.1', 'prophet' 'aniso8601==9.0.1', 'click==8.0.1', 'colorama==0.4.4', 'Flask==2.0.1', 'Flask-RESTful==0.3.9', 'itsdangerous==2.0.1', 
