@@ -1,6 +1,15 @@
 import numpy as np 
 import pandas as pd 
 
+
+"""
+..  module:: generate_predictable_city
+    :synopsis: The file that creates the predictable_areas.csv file from the pollution_us_2000_2016.csv file, which assists
+    in input validation for the state, county, and city parameters.
+..  moduleauthor:: Haotian Wang <haotianwang@ufl.edu>
+"""
+
+
 # read the csv file into a dataframe
 df = pd.read_csv('pollution_us_2000_2016.csv')
 
