@@ -12,7 +12,7 @@ pip install AIRPrediction
 
 
 ## Command to Run Sample App
-python3 sampleapp.py 
+sampleapp 
 
 ## Repository Link
 https://github.com/danielcasto/AIRPrediction
