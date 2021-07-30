@@ -1,9 +1,9 @@
 # AIRPrediction
 (Framework) AIR Quality Forecast Model leveraging Time Series Models to enable timely preventive measures to reduce harmful impact on U.S. citizens.
 
-## Dataset to Train the Time Series Model AIRPrediction (Prototype)
+## Dataset Used to Train the Prediction Model
 Since GitHub has a strict file limit of 100MB, we cannot upload the dataset to GitHub.
-You need to include this csv file manually in the working directory: 
+You need to include this csv file manually in the data folder, and it can be downloaded from this link: 
 https://www.kaggle.com/sogun3/uspollution
 pollution_us_2000_2016.csv(382.37 MB)
 
