@@ -8,11 +8,11 @@ https://www.kaggle.com/sogun3/uspollution
 pollution_us_2000_2016.csv(382.37 MB)
 
 ## Package Name for PIP Installation
-  pip install AIRPrediction
+`pip install AIRPrediction`
 
 
 ## Command to Run Sample App
-  sampleapp 
+`sampleapp`
 
 ## Repository Link
 https://github.com/danielcasto/AIRPrediction
