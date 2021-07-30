@@ -3,7 +3,23 @@ from statsmodels.tsa.arima_model import ARIMA
 from datetime import datetime
 
 
+"""
+..  module:: ARIMA_model
+    :synopsis: The file containing the function that utilizes the ARIMA prediction model.
+..  moduleauthor:: Haotian Wang <haotianwang@ufl.edu>
+"""
+
+
 def arima_prediction(pollutant, state, county, city, date):
+    """ Opens and prepares the dataset (pollution_us_2000_2016.csv) to be used by the prophet model to predict
+        the specified pollutant given the location and date parameters.
+        :param pollutant: The specified pollutant to predict (NO2, O3, SO2, CO).
+        :param state: The location parameter indicating the state in the United States of America to predict for.
+        :param county: The location parameter indicating the county in the state to predict for.
+        :param city: The location parameter indicating the city in the county to predict for.
+        :param date: The calendar date to prediction for.
+        :return: The value predicted by the ARIMA model as well as the units of the prediction (ppb).
+    """
     pollutant_choice = pollutant + " AQI"
 
     # read the csv file into a dataframe
