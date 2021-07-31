@@ -20,15 +20,14 @@ https://www.kaggle.com/sogun3/uspollution
 pollution_us_2000_2016.csv(382.37 MB)
 
 ## Package Name for PIP Installation
-Sample application can be run via a single command from any directory after installation:
 `pip install AIRPrediction`
-Or,
-can be run via this command once you are inside the project folder:
-'python3 sampleapp.py'
-
 
 ## Command to Run Sample App
+Sample application can be run via a single command from any directory after installation:
 `sampleapp`
+Or can be run via this command once you are inside the project folder:
+`python3 sampleapp.py`
+
 
 ## Repository Link
 https://github.com/danielcasto/AIRPrediction
