@@ -20,7 +20,7 @@ https://www.kaggle.com/sogun3/uspollution
 pollution_us_2000_2016.csv(382.37 MB)
 
 ## Package Name for PIP Installation
-`pip install AIRPrediction`
+`pip install AIRPrediction==0.0.8`
 
 ## Command to Run Sample App
 Sample application can be run via a single command from any directory after installation:
