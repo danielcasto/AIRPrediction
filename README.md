@@ -10,7 +10,7 @@ Yuko Matsumoto - Pitching the idea for AIRPrediction, forming Data for Good by U
 (Framework) AIR Quality Forecast Model leveraging Time Series Models to enable timely preventive measures to reduce harmful impact on U.S. citizens.
 
 ## Documentation Navigation
-To find the html documentation of the features of this framework, utilize this navigation:
+To find the documentation in man format of the features of this framework, utilize this navigation:
 docs -> build -> html -> index.html
 
 ## Dataset Used to Train the Prediction Model
