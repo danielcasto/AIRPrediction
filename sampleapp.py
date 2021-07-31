@@ -139,8 +139,15 @@ class MainWindow(QWidget):
 
 
 def main():
-    """ Generates the window the application is hosted on.
-        :return: None
+
+    """ The sample app that demonstrates the functionality of the AIRPrediction framework. Creates a UI that
+    accepts user input and calls the functions in the AIRPrediction to utilize the Time Series Models to produce
+    predictions. main () generates the window the application is hosted on.
+
+    Module Authors: Colin Naehr <cnaehr@ufl.edu>, Daniel Casto <danielcasto@ufl.edu>, Derek Pena <derek.pena@ufl.edu>,
+    Haotian Wang <haotianwang@ufl.edu>
+
+    :return: None
     """
     app = QApplication(sys.argv)
     main_window = MainWindow()

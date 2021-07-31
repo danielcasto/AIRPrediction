@@ -125,7 +125,13 @@ def arima(pollutant, state, county, city, date):
 
 
 def compare_models(pollutant, state, county, city, date):
-    """ A function that times both prediction models in order to compare their speed and their output.
+    """The driver file that is to be imported to utilize the AIRPrediction Framework.
+    Includes a function for input validation, prophet predictions, ARIMA predictions, and comparison of the two models.
+    Module Authors: Derek Pena <derek.pena@ufl.edu>, Colin Naehr <cnaehr@ufl.edu>, Daniel Casto <danielcasto@ufl.edu>,
+    Haotian Wang <haotianwang@ufl.edu>
+
+    compare_models is a function that times both prediction models in order to compare their speed and their output.
+
     :param pollutant: The specified pollutant to predict (NO2, O3, SO2, CO).
     :param state: The location parameter indicating the state in the United States of America to predict for.
     :param county: The location parameter indicating the county in the state to predict for.

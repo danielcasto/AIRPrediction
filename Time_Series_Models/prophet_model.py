@@ -2,7 +2,6 @@ import pandas as pd
 from prophet import Prophet
 from datetime import datetime
 
-
 """
 ..  module:: prophet_model
     :synopsis: The file containing the function that utilizes the prophet prediction model.
@@ -12,7 +11,9 @@ from datetime import datetime
 
 def prophet_prediction(pollutant, state, county, city, date):
     """ Opens and prepares the dataset (pollution_us_2000_2016.csv) to be used by the prophet model to predict
-        the specified pollutant given the location and date parameters.
+        the specified pollutant given the location and date parameters. NOTE: Part of Time_Series_Models
+        Module Author: Haotian Wang <haotianwang@ufl.edu>
+
         :param pollutant: The specified pollutant to predict (NO2, O3, SO2, CO).
         :param state: The location parameter indicating the state in the United States of America to predict for.
         :param county: The location parameter indicating the county in the state to predict for.
@@ -36,7 +37,7 @@ def prophet_prediction(pollutant, state, county, city, date):
     df = df.drop(columns=['Date Local'])
 
     # compute mean AQI for each citiy for each date
-    mean_aqi = df.groupby(['State','County','City', 'date'])[['NO2 AQI', 'O3 AQI', 'SO2 AQI', 'CO AQI']].mean()
+    mean_aqi = df.groupby(['State', 'County', 'City', 'date'])[['NO2 AQI', 'O3 AQI', 'SO2 AQI', 'CO AQI']].mean()
 
     # reset index mean_aqi
     mean_aqi = mean_aqi.reset_index()
@@ -48,7 +49,7 @@ def prophet_prediction(pollutant, state, county, city, date):
 
     date_format = "%Y-%m-%d"
 
-    start_date_temp = new_df.iloc[len(new_df.index)-1]['date']
+    start_date_temp = new_df.iloc[len(new_df.index) - 1]['date']
     start_date = str(start_date_temp)[:10]
 
     start_date = datetime.strptime(start_date, date_format)
@@ -66,21 +67,21 @@ def prophet_prediction(pollutant, state, county, city, date):
     prophet_model.fit(new_df)
 
     # the parameter 'periods' represents the number of days you want to predict after 2016-04-30
-    future = prophet_model.make_future_dataframe(periods = date_difference.days)
+    future = prophet_model.make_future_dataframe(periods=date_difference.days)
 
     forecast = prophet_model.predict(future)
 
-    #print(forecast)
+    # print(forecast)
 
     if pollutant == "SO2" or pollutant == "NO2":
         pollutant_unit = "parts per billion (ppb)"
     elif pollutant == "O3" or pollutant == "CO":
         pollutant_unit = "parts per million (ppm)"
-        
+
     temp = forecast[forecast['ds'] == date]
     output = list(x for x in temp["yhat"])
 
-    #print(output)
+    # print(output)
 
     return output[0], pollutant_unit
 
