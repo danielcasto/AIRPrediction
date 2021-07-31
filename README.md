@@ -9,6 +9,10 @@ Yuko Matsumoto - Pitching the idea for AIRPrediction, forming Data for Good by U
 ## Description
 (Framework) AIR Quality Forecast Model leveraging Time Series Models to enable timely preventive measures to reduce harmful impact on U.S. citizens.
 
+## Documentation Navigation
+To find the html documentation of the features of this framework, utilize this navigation:
+docs -> build -> html -> index.html
+
 ## Dataset Used to Train the Prediction Model
 Since GitHub has a strict file limit of 100MB, we cannot upload the dataset to GitHub.
 You need to include this csv file manually in the data folder, and it can be downloaded from this link: 
