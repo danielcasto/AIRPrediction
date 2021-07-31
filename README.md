@@ -25,6 +25,8 @@ pollution_us_2000_2016.csv(382.37 MB)
 ## Command to Run Sample App
 Sample application can be run via a single command from any directory after installation:
 `sampleapp`
+
+
 Or can be run via this command once you are inside the project folder:
 `python3 sampleapp.py`
 
