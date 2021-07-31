@@ -19,7 +19,7 @@ from AIRPrediction import *
 
 class MainWindow(QWidget):
     """ Class that holds all of the UI elements of the sample app and their functionality.
-        :parent class: QWidget
+        Parent class: QWidget
     """
     def __init__(self):
         """ Initializes the UI elements of the sample app.
