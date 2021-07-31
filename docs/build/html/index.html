@@ -37,12 +37,20 @@
 <dt class="sig sig-object py" id="AIRPrediction.arima">
 <span class="sig-prename descclassname"><span class="pre">AIRPrediction.</span></span><span class="sig-name descname"><span class="pre">arima</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pollutant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">county</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">city</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AIRPrediction.arima" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function that uses the arima_prediction from ARIMA_model.py to avoid using multiple import statements.
-:param pollutant: The specified pollutant to predict (NO2, O3, SO2, CO).
-:param state: The location parameter indicating the state in the United States of America to predict for.
-:param county: The location parameter indicating the county in the state to predict for.
-:param city: The location parameter indicating the city in the county to predict for.
-:param date: The calendar date to prediction for.
-:return: The prediction made by the ARIMA model given the above parameters and the units that prediction is in.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pollutant</strong> – The specified pollutant to predict (NO2, O3, SO2, CO).</p></li>
+<li><p><strong>state</strong> – The location parameter indicating the state in the United States of America to predict for.</p></li>
+<li><p><strong>county</strong> – The location parameter indicating the county in the state to predict for.</p></li>
+<li><p><strong>city</strong> – The location parameter indicating the city in the county to predict for.</p></li>
+<li><p><strong>date</strong> – The calendar date to prediction for.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The prediction made by the ARIMA model given the above parameters and the units that prediction is in.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -73,32 +81,47 @@ Haotian Wang &lt;<a class="reference external" href="mailto:haotianwang&#37;&#52
 <dt class="sig sig-object py" id="AIRPrediction.prophet">
 <span class="sig-prename descclassname"><span class="pre">AIRPrediction.</span></span><span class="sig-name descname"><span class="pre">prophet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pollutant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">county</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">city</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AIRPrediction.prophet" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function that uses the prophet_prediction from prophet_model.py to avoid using multiple import statements.
-:param pollutant: The specified pollutant to predict (NO2, O3, SO2, CO).
-:param state: The location parameter indicating the state in the United States of America to predict for.
-:param county: The location parameter indicating the county in the state to predict for.
-:param city: The location parameter indicating the city in the county to predict for.
-:param date: The calendar date to prediction for.
-:return: The prediction made by the prophet model given the above parameters and the units that prediction is in.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pollutant</strong> – The specified pollutant to predict (NO2, O3, SO2, CO).</p></li>
+<li><p><strong>state</strong> – The location parameter indicating the state in the United States of America to predict for.</p></li>
+<li><p><strong>county</strong> – The location parameter indicating the county in the state to predict for.</p></li>
+<li><p><strong>city</strong> – The location parameter indicating the city in the county to predict for.</p></li>
+<li><p><strong>date</strong> – The calendar date to prediction for.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The prediction made by the prophet model given the above parameters and the units that prediction is in.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="AIRPrediction.validate_input">
 <span class="sig-prename descclassname"><span class="pre">AIRPrediction.</span></span><span class="sig-name descname"><span class="pre">validate_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pollutant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">county</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">city</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AIRPrediction.validate_input" title="Permalink to this definition">¶</a></dt>
 <dd><p>Validates the input provided by a user. To be used before any predictions are made.
-:param pollutant: The specified pollutant to predict (NO2, O3, SO2, CO).
-:param state: The location parameter indicating the state in the United States of America to predict for.
-:param county: The location parameter indicating the county in the state to predict for.
-:param city: The location parameter indicating the city in the county to predict for.
-:param date: The calendar date to prediction for.
-:return: A boolean that determines where validation was successful, a string that contains any error messages
-and a string that rewrites the data parameter in YYYY/MM/DD format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pollutant</strong> – The specified pollutant to predict (NO2, O3, SO2, CO).</p></li>
+<li><p><strong>state</strong> – The location parameter indicating the state in the United States of America to predict for.</p></li>
+<li><p><strong>county</strong> – The location parameter indicating the county in the state to predict for.</p></li>
+<li><p><strong>city</strong> – The location parameter indicating the city in the county to predict for.</p></li>
+<li><p><strong>date</strong> – The calendar date to prediction for.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A boolean that determines where validation was successful, a string that contains any error messages and a string that rewrites the data parameter in YYYY/MM/DD format.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <span class="target" id="module-sampleapp"></span><dl class="py class">
 <dt class="sig sig-object py" id="sampleapp.MainWindow">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">sampleapp.</span></span><span class="sig-name descname"><span class="pre">MainWindow</span></span><a class="headerlink" href="#sampleapp.MainWindow" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class that holds all of the UI elements of the sample app and their functionality.
-:parent class: QWidget</p>
+Parent class: QWidget</p>
 </dd></dl>
 
 <dl class="py function">
