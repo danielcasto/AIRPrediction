@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name = 'AIRPrediction',
-    version = '0.0.5',
+    version = '0.0.6',
     packages=['Time_Series_Models','data','docs',],
     scripts = ['sampleapp.py', 'AIRPrediction.py'],
     url = 'https://github.com/danielcasto/AIRPrediction',
